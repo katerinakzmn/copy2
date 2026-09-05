@@ -1,0 +1,32 @@
+# Copy this file to configs/real_openai.yaml locally and set model IDs after checking account access.
+# Do not put API keys in this file.
+
+backend: openai
+
+models:
+  weak: "REPLACE_WITH_GPT4_MODEL_ID"
+  strong: "REPLACE_WITH_GPT5_MODEL_ID"
+
+experiment:
+  temperature: 0
+  max_attempts_per_episode: 3
+  max_output_tokens: 600
+  timeout_seconds: 90
+  max_episode_cost_usd: 0.10
+  pilot_tasks: 20
+  main_tasks: 120
+  main_repetitions: 2
+  seed: 20260904
+
+prompt:
+  version: "v1_compact_code_only"
+  return_format: "code_only"
+  include_full_tests: false
+  max_feedback_characters: 2000
+
+logging:
+  save_prompt_hash: true
+  save_token_usage: true
+  save_latency: true
+  save_step_cost_usd: true
+  save_pricing_snapshot: true
