@@ -1,32 +1,39 @@
-# Copy this file to configs/real_openai.yaml locally and set model IDs after checking account access.
+# Copy this file to configs/real_openai.yaml locally.
+# Set model IDs and API credentials only through environment variables.
 # Do not put API keys in this file.
 
 backend: openai
+dataset: toy
+seed: 20260905
+
+policy:
+  name: retry_then_escalate
+  max_weak_attempts: 2
+  max_strong_attempts: 1
+  confidence_threshold: 0.50
+  zero_progress_limit: 1
+
+budget:
+  max_total_iterations: 3
+  max_episode_cost_usd: 0.10
+
+openai:
+  temperature: 0
+  max_output_tokens: 600
+  reviewer_max_output_tokens: 120
+  feedback_max_characters: 2000
 
 models:
-  weak: "REPLACE_WITH_GPT4_MODEL_ID"
-  strong: "REPLACE_WITH_GPT5_MODEL_ID"
+  weak_env: OPENAI_WEAK_MODEL
+  strong_env: OPENAI_STRONG_MODEL
+  reviewer_env: OPENAI_REVIEW_MODEL
 
-experiment:
-  temperature: 0
-  max_attempts_per_episode: 3
-  max_output_tokens: 600
-  timeout_seconds: 90
-  max_episode_cost_usd: 0.10
-  pilot_tasks: 20
-  main_tasks: 120
-  main_repetitions: 2
-  seed: 20260904
-
-prompt:
-  version: "v1_compact_code_only"
-  return_format: "code_only"
-  include_full_tests: false
-  max_feedback_characters: 2000
+pricing_file: configs/pricing.yaml
 
 logging:
+  save_debug_log: true
+  save_trajectory_log: true
   save_prompt_hash: true
   save_token_usage: true
   save_latency: true
   save_step_cost_usd: true
-  save_pricing_snapshot: true

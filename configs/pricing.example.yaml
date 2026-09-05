@@ -1,17 +1,21 @@
-# Pricing must be reviewed and copied into configs/pricing.yaml immediately before a pilot run.
-# Values are USD per 1,000,000 tokens. Record the source URL and access date.
+# Copy this file to configs/pricing.yaml immediately before the pilot run.
+# Values are USD per 1,000,000 tokens. Record model IDs, pricing source, and date.
 
 pricing_snapshot:
-  provider: "OpenAI"
-  accessed_on: "YYYY-MM-DD"
-  source_url: "https://developers.openai.com/api/docs/pricing"
+  provider: OpenAI
+  accessed_on: YYYY-MM-DD
+  source_url: https://developers.openai.com/api/docs/pricing
 
 models:
-  REPLACE_WITH_GPT4_MODEL_ID:
+  REPLACE_WITH_OPENAI_WEAK_MODEL:
     input_per_million_usd: null
     cached_input_per_million_usd: null
     output_per_million_usd: null
-  REPLACE_WITH_GPT5_MODEL_ID:
-    input_per_million_usd: 1.25
-    cached_input_per_million_usd: 0.125
-    output_per_million_usd: 10.00
+  REPLACE_WITH_OPENAI_STRONG_MODEL:
+    input_per_million_usd: null
+    cached_input_per_million_usd: null
+    output_per_million_usd: null
+  REPLACE_WITH_OPENAI_REVIEW_MODEL:
+    input_per_million_usd: null
+    cached_input_per_million_usd: null
+    output_per_million_usd: null
